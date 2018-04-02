@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>select por Mikevh78</title>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+	<link rel="stylesheet" href="mvselect.css">
+</head>
+<style>
+	body {
+		background-color: #f1f1f1;
+	}
+</style>
+<body>
+	
+	<div class="container" style="padding-top: 50px">
+		<div class="row">
+			<div class="col s6 mvselect">
+				
+				<select class="browser-default mvselect-active" id="myselect" multiple>
+					<option value="Miguel" data-icon="img/persona1.jpg" data-subtitle="Profesor">Miguel Angel Vazquez</option>
+					<option value="Daniel" data-subtitle="Alumno" data-icon="img/persona3.png">Daniel Hernandes</option>
+					<option value="Pedro" data-subtitle="Profesor" data-icon="img/persona2.png">Pedro Gil</option>
+				</select>
+
+			</div>
+			<div class="col s6 mvselect">
+				<select class="browser-default mvselect-active" id="myselect2" >
+					<option value="0">seleccionar</option>
+					<option value="1">opcion 1</option>
+					<option value="2">opcion 2</option>
+					<option value="3">opcion 3</option>
+					<option value="4">opcion 4</option>
+					<option value="5">opcion 5</option>
+					<option value="6">opcion 6</option>
+					<option value="7">opcion 7</option>
+					<option value="8">opcion 8</option>
+					<option value="10">opcion 10</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<button class="btn" onclick="enviar('#myselect')">enviar</button>
+				<button class="btn" onclick="enviar('#myselect2')">enviar 2</button>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="mvselect.js"></script>
+	<script>
+		function enviar(id) {
+			alert( "value:"+ $(id).val() );
+		}
+	</script>
+</body>
+</html>

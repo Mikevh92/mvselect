@@ -1,0 +1,70 @@
+.mvselect-space input[type=text] {
+	border-bottom: 0px;
+	border: 1px solid #d4d4d4;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: white;
+	padding: 0px 10px;
+    box-sizing: inherit;
+}
+.mvselect-space input[type=text]:focus {
+	border-bottom:1px solid #d4d4d4 !important;
+	box-shadow: none !important;
+}
+.mvselect-space svg {
+	position: relative;
+	float: right;
+	margin-top: -40px;
+	cursor: pointer;
+}
+.mvselect-space ul {
+	position: absolute;
+	margin-top: -5px;
+	background: white;
+	padding: 10px;
+	border: 1px solid #d4d4d4;
+	max-height: 300px;
+	overflow: scroll;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+.mvselect-space ul li {
+	min-height: 50px;
+	margin-top: 5px;
+	cursor: pointer;
+	display: inline-block;
+	width: 100%;
+	padding:5px;
+}
+.mvselect-space ul li:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+.mvselect-space .mvselect-title {
+	font-size: 15px;
+	font-weight: bold;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+.mvselect-space .mvselect-subtitle {
+	font-size: 12px;
+	font-weight: 300;
+	display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+.mvselect-space .mvselect-icon {
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin-right: 10px;
+}
+.mvselect-space .mvselect-icon img {
+	width: 100%;
+	height: 100%;
+}
+.mvselect-space ul .selected {
+	background-color: #b2ebf2;
+}
+
