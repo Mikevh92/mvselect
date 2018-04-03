@@ -32,12 +32,12 @@ with the mvselect class to activate the change.
   
   <div class="mvselect">
     <select class="mvselect-active">
-      <option value="Mike" data-icon="lib/img/persona1.jpg" data-subtitle="Admin">Mike</option>
-      <option value="Mariana" data-icon="lib/img/persona2.jpg" data-subtitle="Admin">Mariana</option>
-      <option value="Elisa" data-icon="lib/img/persona4.jpg" data-subtitle="User">Elisa</option>
+      <option value="Mike" data-icon="img/persona1.jpg" data-subtitle="Admin">Mike</option>
+      <option value="Mariana" data-icon="img/persona3.png" data-subtitle="Admin">Mariana</option>
+      <option value="Elisa" data-icon="img/persona2.png" data-subtitle="User">Elisa</option>
     </select>
   </div>
   
-  <script src="lib/mvselect.js"></script>
+  <script src="mvselect.js"></script>
 </body>
 ```
