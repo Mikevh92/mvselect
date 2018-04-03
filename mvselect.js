@@ -7,7 +7,7 @@
 $(document).ready(function() {
 	mvselectIni();
 });
-
+//evento al dar click en el input para abrir la lista de elementos
 $('body').on('click', '.mvselect-space input', function(event) {
 	event.preventDefault();
 	$('.mvselect-space ul').css('display', 'none');
@@ -20,6 +20,7 @@ $('body').on('click', '.mvselect-space input', function(event) {
 	event.stopPropagation();
 });
 
+// evento para buscar en la lista de elementos
 $('body').on('keyup', '.mvselect-space input', function(event) {
 	event.preventDefault();
 
@@ -38,6 +39,7 @@ $('body').on('keyup', '.mvselect-space input', function(event) {
 });
 
 
+// evento para cerrar la lista de elementos
 $(document).click(function(event) {
 	$('.mvselect-space ul').css('display', 'none');
 
@@ -57,6 +59,8 @@ $(document).click(function(event) {
 	}
 });
 
+
+// evento para seleccionar un item de la lista de elementos y mandarlo al select y al input para vista previa
 $('body').on('click', '.mvselect-space ul li', function(event) {
 	event.preventDefault();
 	
@@ -106,10 +110,29 @@ $('body').on('click', '.mvselect-space ul li', function(event) {
 			}
 		}
 	}
-
-	
-	
 });
+
+// evento para cambiar el valor de forma externa
+function mvselectValue(id, value) {
+
+	$(id).val(value);
+		
+	$(id).closest('.mvselect').find('.mvselect-space li').each(function(index, el) {
+		if( $(id).data('idulselect') != undefined ){
+			if( $(id).attr('multiple') ){
+				if( $.inArray($(this).data('value'), value) !== -1 ){
+					$(this).addClass('selected');
+				}
+			}else{
+				if( $(this).data('value') == value ){
+					$(id).closest('.mvselect').find('input[type=text]').val( $(this).find('.mvselect-title').text() );
+				}
+			}
+		}
+	});
+	
+}
+
 
 function mvselectIni() {
 
