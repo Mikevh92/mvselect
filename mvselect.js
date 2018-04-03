@@ -112,9 +112,16 @@ $('body').on('click', '.mvselect-space ul li', function(event) {
 });
 
 function mvselectIni() {
+
+	if( $('body').find('.mvselect .mvselect-space').length > 0 ){
+		$('body').find('.mvselect .mvselect-space').remove();
+	}
+
 	var $mvselect = $('body').find('.mvselect-active');
 
 	for( var i = 0; i < $mvselect.length; i++ ){
+
+		$($mvselect[i]).css('display', 'block');
 
 		var mvselect_ul = ((i+1)<10?'0'+(i+1):(i+1));
 
