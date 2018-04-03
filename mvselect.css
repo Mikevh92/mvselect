@@ -1,3 +1,6 @@
+.hide {
+	display: none !important;
+}
 .mvselect-space input[type=text] {
 	border-bottom: 0px;
 	border: 1px solid #d4d4d4;

@@ -20,8 +20,41 @@ $('body').on('click', '.mvselect-space input', function(event) {
 	event.stopPropagation();
 });
 
+$('body').on('keyup', '.mvselect-space input', function(event) {
+	event.preventDefault();
+
+	var word = ($(this).val()).split(",");
+	var last = (word.length)-1;
+	var regExp = new RegExp(word[last]);
+
+	$(this).closest('.mvselect-space').find('li').each(function(index, el) {
+		if( !regExp.test($(this).find('.mvselect-title').text()) ){
+			$(this).addClass('hide');
+		}else{
+			$(this).removeClass('hide');
+		}
+	});
+
+});
+
+
 $(document).click(function(event) {
 	$('.mvselect-space ul').css('display', 'none');
+
+	for( var i = 0; i < $('.mvselect-space ul').length; i++ ){
+
+		if( $($('.mvselect-space ul')[i]).data('multiple') ){
+			var textSelected = new Array();
+
+			$($('.mvselect-space ul')[i]).find('li').each(function(index, el) {
+				if( $(this).hasClass('selected') ){
+					textSelected.push( $(this).find('.mvselect-title').text() );
+				}
+			});
+
+			$($('.mvselect-space ul')[i]).closest('.mvselect-space').find('input[type=text]').val(textSelected);
+		}
+	}
 });
 
 $('body').on('click', '.mvselect-space ul li', function(event) {
@@ -31,6 +64,7 @@ $('body').on('click', '.mvselect-space ul li', function(event) {
 	var text = $(this).find('.mvselect-title').text();
 	var ulid = $(this).closest('ul').attr('id');
 	var selected = new Array();
+	var textSelected = new Array();
 
 	if( $(this).closest('ul').data('multiple') ){	
 		if( $(this).hasClass('selected') ){
@@ -42,6 +76,7 @@ $('body').on('click', '.mvselect-space ul li', function(event) {
 		$(this).closest('ul').find('li').each(function(index, el) {
 			if( $(this).hasClass('selected') ){
 				selected.push( $(this).data('value') );
+				textSelected.push( $(this).find('.mvselect-title').text() );
 			}
 		});
 		event.stopPropagation();
@@ -67,7 +102,7 @@ $('body').on('click', '.mvselect-space ul li', function(event) {
 			if( $(this).closest('ul').data('multiple') == false ){	
 				$($input[i]).val(text);
 			}else{
-				$($input[i]).val(selected);
+				$($input[i]).val(textSelected);
 			}
 		}
 	}
