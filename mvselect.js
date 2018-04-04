@@ -89,7 +89,7 @@ $('body').on('click', '.mvselect-space ul li', function(event) {
 
 	var $select = $('body .mvselect').find('.mvselect-active');
 	for(var i = 0; i < $select.length; i++){
-		if( $($select[i]).data('idulselect') == ulid ) {
+		if( $($select[i]).attr('data-idulselect') == ulid ) {
 			
 			if( $(this).closest('ul').data('multiple') == false ){	
 				$($select[i]).val(value);
@@ -101,7 +101,7 @@ $('body').on('click', '.mvselect-space ul li', function(event) {
 
 	var $input = $('body .mvselect').find('input[type=text]');
 	for(var i = 0; i < $input.length; i++){
-		if( $($input[i]).data('idul') == ulid ) {
+		if( $($input[i]).attr('data-idul') == ulid ) {
 			
 			if( $(this).closest('ul').data('multiple') == false ){	
 				$($input[i]).val(text);
