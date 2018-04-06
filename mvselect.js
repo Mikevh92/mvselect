@@ -41,6 +41,10 @@ $('body').on('keyup', '.mvselect-space input', function(event) {
 
 // evento para cerrar la lista de elementos
 $(document).click(function(event) {
+	closeSelect();
+});
+
+function closeSelect() {
 	$('.mvselect-space ul').css('display', 'none');
 
 	for( var i = 0; i < $('.mvselect-space ul').length; i++ ){
@@ -57,8 +61,7 @@ $(document).click(function(event) {
 			$($('.mvselect-space ul')[i]).closest('.mvselect-space').find('input[type=text]').val(textSelected);
 		}
 	}
-});
-
+}
 
 // evento para seleccionar un item de la lista de elementos y mandarlo al select y al input para vista previa
 $('body').on('click', '.mvselect-space ul li', function(event) {
@@ -122,6 +125,8 @@ function mvselectValue(id, value) {
 			if( $(id).attr('multiple') ){
 				if( $.inArray($(this).data('value'), value) !== -1 ){
 					$(this).addClass('selected');
+				}else{
+					$(this).removeClass('selected');
 				}
 			}else{
 				if( $(this).data('value') == value ){
@@ -130,7 +135,7 @@ function mvselectValue(id, value) {
 			}
 		}
 	});
-	
+	closeSelect();
 }
 
 
