@@ -26,10 +26,11 @@ $('body').on('keyup', '.mvselect-space input', function(event) {
 
 	var word = ($(this).val()).split(",");
 	var last = (word.length)-1;
-	var regExp = new RegExp(word[last]);
+	var lastMin = (word[last]).toLowerCase();
+	var regExp = new RegExp(lastMin);
 
 	$(this).closest('.mvselect-space').find('li').each(function(index, el) {
-		if( !regExp.test($(this).find('.mvselect-title').text()) ){
+		if( !regExp.test( ($(this).find('.mvselect-title').text()).toLowerCase() ) ){
 			$(this).addClass('hide');
 		}else{
 			$(this).removeClass('hide');
