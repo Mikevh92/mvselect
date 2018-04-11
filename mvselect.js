@@ -161,7 +161,7 @@ function mvselectIni() {
 					'<path d="M7 10l5 5 5-5z"></path>'+
 					'<path d="M0 0h24v24H0z" fill="none"></path>'+
 				'</svg>'+
-				'<ul id="mvselect_ul_'+ mvselect_ul +'" data-multiple="'+ ($($mvselect[i]).attr('multiple')!=undefined?'true':'false') +'" style="display:none; width:'+ $($mvselect[i]).width() +'px">';
+				'<ul id="mvselect_ul_'+ mvselect_ul +'" data-multiple="'+ ($($mvselect[i]).attr('multiple')!=undefined?'true':'false') +'" style="display:none; width:'+ $($mvselect[i]).width() +'px;'+ $($mvselect[i]).data('css') +'">';
 		$($mvselect[i]).find('option').each(function(index, el) {
 			
 			divHTML += 
