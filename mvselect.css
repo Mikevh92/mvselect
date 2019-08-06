@@ -8,7 +8,7 @@
 	cursor: pointer;
 	background-color: white;
 	padding: 0px 10px;
-    box-sizing: inherit;
+	box-sizing: inherit;
 }
 .mvselect-space input[type=text]:focus {
 	border-bottom:1px solid #d4d4d4 !important;
@@ -26,11 +26,12 @@
 	background: white;
 	padding: 10px;
 	border: 1px solid #d4d4d4;
-	min-width: 300px !important;
-	max-width: 500px !important;
+	/*min-width: 300px !important;
+	max-width: 500px !important;*/
 	max-height: 300px;
 	overflow: scroll;
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+	z-index: 10;
 }
 .mvselect-space ul li {
 	min-height: 50px;
@@ -46,18 +47,18 @@
 .mvselect-space .mvselect-title {
 	font-size: 15px;
 	font-weight: bold;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis
+	display: block;
+	/*white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis*/
 }
 .mvselect-space .mvselect-subtitle {
 	font-size: 12px;
 	font-weight: 300;
 	display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis
+	/*white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis*/
 }
 .mvselect-space .mvselect-icon {
 	width: 50px;

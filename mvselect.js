@@ -159,37 +159,37 @@ function mvselectIni() {
 		var mvselect_ul = ((i+1)<10?'0'+(i+1):(i+1));
 
 		var divHTML =
-			'<div class="mvselect-space">'+
-				'<input type="text" placeholder="Buscar" data-idul="mvselect_ul_'+ mvselect_ul +'" value="'+ mvselectValue +'">'+
-				'<svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">'+
-					'<path d="M7 10l5 5 5-5z"></path>'+
-					'<path d="M0 0h24v24H0z" fill="none"></path>'+
-				'</svg>'+
-				'<ul id="mvselect_ul_'+ mvselect_ul +'" data-multiple="'+ ($($mvselect[i]).attr('multiple')!=undefined?'true':'false') +'" style="display:none; width:'+ $($mvselect[i]).width() +'px;'+ $($mvselect[i]).data('css') +'">';
-		$($mvselect[i]).find('option').each(function(index, el) {
-
-			//poner iconos o imagenes
-			var icon = '';
-			if ( $(this).data('icon') != undefined && (/\.(jpg|png|gif)$/i).test($(this).data('icon')) ){
+		'<div class="mvselect-space">'+
+			'<input type="text" placeholder="Buscar" data-idul="mvselect_ul_'+ mvselect_ul +'" value="'+ mvselectValue +'">'+
+			'<svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">'+
+				'<path d="M7 10l5 5 5-5z"></path>'+
+				'<path d="M0 0h24v24H0z" fill="none"></path>'+
+			'</svg>'+
+			'<ul id="mvselect_ul_'+ mvselect_ul +'" data-multiple="'+ ($($mvselect[i]).attr('multiple')!=undefined?'true':'false') +'" style="display:none; width:'+ $($mvselect[i]).width() +'px;'+ $($mvselect[i]).data('css') +'">';
 				
-				icon = '<div class="mvselect-icon"><img src="'+ $(this).data('icon') +'"></div>';
+				$($mvselect[i]).find('option').each(function(index, el) {
+					//poner iconos o imagenes
+					var icon = '';
+					if ( $(this).data('icon') != undefined && (/\.(jpg|png|gif)$/i).test($(this).data('icon')) ){
 
-			}else if( $(this).data('icon') != undefined && (/\.(material-icons)$/i).test($(this).data('icon')) ){
-				
-				icon = '<i class="material-icons" style="margin-left: 30%; margin-top: 20%; color: #797979;">'+ ($(this).data('icon')).split('.')[0] +'</i>';
-			}
-			
-			divHTML += 
+						icon = '<div class="mvselect-icon"><img src="'+ $(this).data('icon') +'"></div>';
+
+					}else if( $(this).data('icon') != undefined && (/\.(material-icons)$/i).test($(this).data('icon')) ){
+
+						icon = '<i class="material-icons" style="margin-left: 30%; margin-top: 20%; color: #797979;">'+ ($(this).data('icon')).split('.')[0] +'</i>';
+					}
+
+					divHTML += 
 					'<li data-value="'+ $(this).attr('value') +'">' +
-						'<div class="mvselect-icon">'+icon+'</div>'+
+						(icon!=''?'<div class="mvselect-icon">'+icon+'</div>':'')+
 						'<div class="mvselect-title">'+ $(this).text() +'</div>'+
 						($(this).data('subtitle') != undefined ? '<div class="mvselect-subtitle">'+ $(this).data('subtitle') +'</div>' : '' ) +
 					'</li>';
-		});
+				});
 
-		divHTML += 
-				'</ul>'+
-			'</div>';
+			divHTML += 
+			'</ul>'+
+		'</div>';
 
 
 		$($mvselect[i]).closest('.mvselect').append(divHTML);
