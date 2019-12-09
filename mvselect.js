@@ -19,6 +19,21 @@ $('body').on('click', '.mvselect-space input', function(event) {
 	}else{
 		$('#'+idul).css('display','none');
 	}
+
+	const width = $(this).width();
+	const offset = $(this).offset();
+	const windowOffset = screen.availWidth;
+
+	const maxHeight = offset.left + 300;
+	var restar = windowOffset < maxHeight ? maxHeight - windowOffset : 0;
+
+	$('#'+idul).closest('.mvselect-space').css({
+		position: 'absolute',
+		top: (offset.top+45)+'px',
+		left: (offset.left-restar)+'px',
+		zIndex: 12000
+	});
+
 	event.stopPropagation();
 });
 
@@ -26,12 +41,14 @@ $('body').on('click', '.mvselect-space input', function(event) {
 $('body').on('keyup', '.mvselect-space input', function(event) {
 	event.preventDefault();
 
+	const idul = $(this).data('idul');
+
 	var word = ($(this).val()).split(",");
 	var last = (word.length)-1;
 	var lastMin = (word[last]).toLowerCase();
 	var regExp = new RegExp(lastMin);
 
-	$(this).closest('.mvselect-space').find('li').each(function(index, el) {
+	$('#'+idul).find('li').each(function(index, el) {
 		if( !regExp.test( ($(this).find('.mvselect-title').text()).toLowerCase() ) ){
 			$(this).addClass('hide');
 		}else{
@@ -121,13 +138,15 @@ $('body').on('click', '.mvselect-space ul li', function(event) {
 // evento para cambiar el valor de forma externa
 function mvselectValue(id, value) {
 
+	const idul = $(id).attr('data-idulselect');
 	$(id).val(value);
 		
-	$(id).closest('.mvselect').find('.mvselect-space li').each(function(index, el) {
+	$('#'+idul).find('li').each(function(index, el) {
 		if( $(id).data('idulselect') != undefined ){
 			if( $(id).attr('multiple') ){
 				if( $.inArray($(this).data('value'), value) !== -1 ){
 					$(this).addClass('selected');
+					$(id).closest('.mvselect').find('input[type=text]').val( $(this).find('.mvselect-title').text() );
 				}else{
 					$(this).removeClass('selected');
 				}
@@ -144,8 +163,8 @@ function mvselectValue(id, value) {
 
 function mvselectIni() {
 
-	if( $('body').find('.mvselect .mvselect-space').length > 0 ){
-		$('body').find('.mvselect .mvselect-space').remove();
+	if( $('body').find('.mvselect-space').length > 0 ){
+		$('body').find('.mvselect-space').remove();
 	}
 
 	var $mvselect = $('body').find('.mvselect-active');
@@ -153,19 +172,24 @@ function mvselectIni() {
 	for( var i = 0; i < $mvselect.length; i++ ){
 
 		var mvselectValue = $($mvselect[i]).find('option:selected').text();
+		var mvselectIdSelect = $($mvselect[i]).attr('id');
 
 		$($mvselect[i]).css('display', 'block');
 
 		var mvselect_ul = ((i+1)<10?'0'+(i+1):(i+1));
 
 		var divHTML =
-		'<div class="mvselect-space">'+
+		'<div class="mvselect-space" data-referenid="'+ mvselectIdSelect +'">'+
 			'<input type="text" placeholder="Buscar" data-idul="mvselect_ul_'+ mvselect_ul +'" value="'+ mvselectValue +'">'+
 			'<svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">'+
 				'<path d="M7 10l5 5 5-5z"></path>'+
 				'<path d="M0 0h24v24H0z" fill="none"></path>'+
 			'</svg>'+
-			'<ul id="mvselect_ul_'+ mvselect_ul +'" data-multiple="'+ ($($mvselect[i]).attr('multiple')!=undefined?'true':'false') +'" style="display:none; width:'+ $($mvselect[i]).width() +'px;'+ $($mvselect[i]).data('css') +'">';
+		'</div>';
+
+		var divHtmlUl = 
+		'<div class="mvselect-space">'+
+			'<ul id="mvselect_ul_'+ mvselect_ul +'" data-referenid="'+ mvselectIdSelect +'" data-multiple="'+ ($($mvselect[i]).attr('multiple')!=undefined?'true':'false') +'" style="display:none; width:'+ $($mvselect[i]).width() +'px;'+ $($mvselect[i]).data('css') +'">';
 				
 				$($mvselect[i]).find('option').each(function(index, el) {
 					//poner iconos o imagenes
@@ -179,7 +203,7 @@ function mvselectIni() {
 						icon = '<i class="material-icons" style="margin-left: 30%; margin-top: 20%; color: #797979;">'+ ($(this).data('icon')).split('.')[0] +'</i>';
 					}
 
-					divHTML += 
+					divHtmlUl += 
 					'<li data-value="'+ $(this).attr('value') +'">' +
 						(icon!=''?'<div class="mvselect-icon">'+icon+'</div>':'')+
 						'<div class="mvselect-title">'+ $(this).text() +'</div>'+
@@ -187,12 +211,14 @@ function mvselectIni() {
 					'</li>';
 				});
 
-			divHTML += 
+			divHtmlUl += 
 			'</ul>'+
 		'</div>';
 
 
 		$($mvselect[i]).closest('.mvselect').append(divHTML);
+		$('body').append(divHtmlUl);
+
 		$($mvselect[i]).attr('data-idulselect', 'mvselect_ul_'+ mvselect_ul);
 		$($mvselect[i]).css('display', 'none');
 	}

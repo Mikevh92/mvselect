@@ -20,7 +20,7 @@
 		<div class="row">
 			<div class="col s6 mvselect">
 				
-				<select class="browser-default mvselect-active" id="myselect" multiple>
+				<select class="browser-default mvselect-active" id="myselectMultiple" multiple>
 					<option value="Miguel" data-subtitle="Profesor" data-icon="send.material-icons" selected>Miguel Angel Vazquez Lorem ipsum dolor.</option>
 					<option value="Daniel" data-subtitle="Alumno" data-icon="img/persona3.png">Daniel Hernandes Lorem ipsum dolor sit amet, consectetur.</option>
 					<option value="Joel" data-subtitle="Profesor" data-icon="img/persona2.png">Joel Lorem ipsum dolor.</option>
@@ -47,7 +47,8 @@
 		</div>
 		<div class="row">
 			<div class="col s12">
-				<button class="btn" onclick="enviar('#myselect')">enviar</button>
+				<button class="btn" onclick="enviar('#myselectMultiple')">Ver 1</button>
+				<button class="btn" onclick="enviar('#myselect2')">Ver 2</button>
 				<button class="btn" onclick="send()">enviar dato a select</button>
 			</div>
 		</div>
@@ -64,7 +65,7 @@
 
 		function send() {
 			//$('#myselect2').val(4);
-			mvselectValue('#myselect',["Miguel","Daniel"]);
+			mvselectValue('#myselectMultiple',["Miguel","Daniel"]);
 			mvselectValue('#myselect2',[4]);
 		}
 	</script>
