@@ -31,7 +31,7 @@
 
 			</div>
 			<div class="col s6 mvselect">
-				<select class="browser-default mvselect-active" id="myselect2" >
+				<select class="browser-default mvselect-active" id="myselect2" data-function="myfunction()" >
 					<option value="0">seleccionar</option>
 					<option value="1">opcion 1 Lorem ipsum dolor sit amet, consectetur.</option>
 					<option value="2">opcion 2 Lorem ipsum dolor sit amet, consectetur adipisicing.</option>
@@ -61,6 +61,10 @@
 	<script>
 		function enviar(id) {
 			alert( "value:"+ $(id).val() );
+		}
+
+		function myfunction() {
+			alert('holaaa');
 		}
 
 		function send() {

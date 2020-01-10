@@ -10,18 +10,29 @@ $(document).ready(function() {
 //evento al dar click en el input para abrir la lista de elementos
 $('body').on('click', '.mvselect-space input', function(event) {
 	event.preventDefault();
-	$('.mvselect-space ul').css('display', 'none');
-	$(this).select();//seleccionar texto del input para hacer busquedas
+	abrirLista(this);
+	event.stopPropagation();
+});
 
-	var idul = $(this).data('idul');
+$('body').on('click', '.mvselect-space svg', function(event) {
+	event.preventDefault();
+	abrirLista($(this).closest('.mvselect-space').find('input'));
+	event.stopPropagation();
+});
+
+function abrirLista(element) {
+	$('.mvselect-space ul').css('display', 'none');
+	$(element).select();//seleccionar texto del input para hacer busquedas
+
+	var idul = $(element).data('idul');
 	if( $('#'+idul).css('display') == 'none' ){
 		$('#'+idul).css('display','block');
 	}else{
 		$('#'+idul).css('display','none');
 	}
 
-	const width = $(this).width();
-	const offset = $(this).offset();
+	const width = $(element).width();
+	const offset = $(element).offset();
 	const windowOffset = screen.availWidth;
 
 	const maxHeight = offset.left + 300;
@@ -33,9 +44,8 @@ $('body').on('click', '.mvselect-space input', function(event) {
 		left: (offset.left-restar)+'px',
 		zIndex: 12000
 	});
+}
 
-	event.stopPropagation();
-});
 
 // evento para buscar en la lista de elementos
 $('body').on('keyup', '.mvselect-space input', function(event) {
@@ -173,6 +183,7 @@ function mvselectIni() {
 
 		var mvselectValue = $($mvselect[i]).find('option:selected').text();
 		var mvselectIdSelect = $($mvselect[i]).attr('id');
+		var mvselectFunction = $($mvselect[i]).attr('data-function');
 
 		$($mvselect[i]).css('display', 'block');
 
@@ -204,7 +215,7 @@ function mvselectIni() {
 					}
 
 					divHtmlUl += 
-					'<li data-value="'+ $(this).attr('value') +'">' +
+					'<li data-value="'+ $(this).attr('value') +'" onclick="'+mvselectFunction+'">' +
 						(icon!=''?'<div class="mvselect-icon">'+icon+'</div>':'')+
 						'<div class="mvselect-title">'+ $(this).text() +'</div>'+
 						($(this).data('subtitle') != undefined ? '<div class="mvselect-subtitle">'+ $(this).data('subtitle') +'</div>' : '' ) +
