@@ -45,8 +45,8 @@
 	background-color: rgba(0,0,0,0.1);
 }
 .mvselect-space .mvselect-title {
-	font-size: 15px;
-	font-weight: bold;
+	font-size: 14px;
+	font-weight: 400;
 	display: block;
 	/*white-space: nowrap;
 	overflow: hidden;
@@ -72,5 +72,14 @@
 }
 .mvselect-space ul .selected {
 	background-color: #b2ebf2;
+}
+
+.mvselect-space .disabled {
+	background-color: #eaeaea;
+	cursor: no-drop;
+}
+.mvselect-space .disabled div {
+	color: #797979;
+	text-align: center;
 }
 

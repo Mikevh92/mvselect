@@ -103,6 +103,10 @@ $('body').on('click', '.mvselect-space ul li', function(event) {
 	var selected = new Array();
 	var textSelected = new Array();
 
+	if($(this).hasClass('disabled')){
+		return false;
+	}
+
 	if( $(this).closest('ul').data('multiple') ){	
 		if( $(this).hasClass('selected') ){
 			$(this).removeClass('selected');
@@ -183,7 +187,7 @@ function mvselectIni() {
 
 		var mvselectValue = $($mvselect[i]).find('option:selected').text();
 		var mvselectIdSelect = $($mvselect[i]).attr('id');
-		var mvselectFunction = $($mvselect[i]).attr('data-function');
+		var mvselectFunction = ($($mvselect[i]).attr('data-function') != undefined ? $($mvselect[i]).attr('data-function') : '');
 
 		$($mvselect[i]).css('display', 'block');
 
@@ -205,6 +209,7 @@ function mvselectIni() {
 				$($mvselect[i]).find('option').each(function(index, el) {
 					//poner iconos o imagenes
 					var icon = '';
+					var disabled = '';
 					if ( $(this).data('icon') != undefined && (/\.(jpg|png|gif)$/i).test($(this).data('icon')) ){
 
 						icon = '<div class="mvselect-icon"><img src="'+ $(this).data('icon') +'"></div>';
@@ -212,10 +217,14 @@ function mvselectIni() {
 					}else if( $(this).data('icon') != undefined && (/\.(material-icons)$/i).test($(this).data('icon')) ){
 
 						icon = '<i class="material-icons" style="margin-left: 30%; margin-top: 20%; color: #797979;">'+ ($(this).data('icon')).split('.')[0] +'</i>';
+					
+					}else if( $(this).prop('disabled')){
+
+						disabled = 'disabled';
 					}
 
 					divHtmlUl += 
-					'<li data-value="'+ $(this).attr('value') +'" onclick="'+mvselectFunction+'">' +
+					'<li data-value="'+ $(this).attr('value') +'" onclick="'+mvselectFunction+'" class="'+ (disabled != '' ? disabled : '') +'">' +
 						(icon!=''?'<div class="mvselect-icon">'+icon+'</div>':'')+
 						'<div class="mvselect-title">'+ $(this).text() +'</div>'+
 						($(this).data('subtitle') != undefined ? '<div class="mvselect-subtitle">'+ $(this).data('subtitle') +'</div>' : '' ) +
