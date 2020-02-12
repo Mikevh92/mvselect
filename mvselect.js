@@ -133,6 +133,7 @@ $('body').on('click', '.mvselect-space ul li', function(event) {
 			}else{
 				$($select[i]).val(selected);
 			}
+			$($select[i])[0].onchange();
 		}
 	}
 
@@ -187,7 +188,6 @@ function mvselectIni() {
 
 		var mvselectValue = $($mvselect[i]).find('option:selected').text();
 		var mvselectIdSelect = $($mvselect[i]).attr('id');
-		var mvselectFunction = ($($mvselect[i]).attr('data-function') != undefined ? $($mvselect[i]).attr('data-function') : '');
 
 		$($mvselect[i]).css('display', 'block');
 
@@ -224,7 +224,7 @@ function mvselectIni() {
 					}
 
 					divHtmlUl += 
-					'<li data-value="'+ $(this).attr('value') +'" onclick="'+mvselectFunction+'" class="'+ (disabled != '' ? disabled : '') +'">' +
+					'<li data-value="'+ $(this).attr('value') +'" class="'+ (disabled != '' ? disabled : '') +'">' +
 						(icon!=''?'<div class="mvselect-icon">'+icon+'</div>':'')+
 						'<div class="mvselect-title">'+ $(this).text() +'</div>'+
 						($(this).data('subtitle') != undefined ? '<div class="mvselect-subtitle">'+ $(this).data('subtitle') +'</div>' : '' ) +
